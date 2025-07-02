@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School ERP — Staff</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header-inner container">
+      <span class="app-name">School ERP</span>
+
+      <nav class="app-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="app-nav-link" data-nav="dashboard">Dashboard</a>
+        <a href="students.html" class="app-nav-link" data-nav="students">Students</a>
+        <a href="attendance.html" class="app-nav-link" data-nav="attendance">Attendance</a>
+        <a href="fees.html" class="app-nav-link" data-nav="fees">Fees</a>
+        <a href="staff.html" class="app-nav-link" data-nav="staff" aria-current="page">Staff</a>
+        <a href="reports.html" class="app-nav-link" data-nav="reports">Reports</a>
+        <a href="settings.html" class="app-nav-link" data-nav="settings">Settings</a>
+      </nav>
+
+      <div class="app-user">
+        <span class="app-user-name" id="current-username">—</span>
+        <span class="app-user-role" id="current-role">—</span>
+        <button type="button" class="btn btn-secondary app-logout" id="logout-button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <h1>Staff</h1>
+    <p class="text-muted">Add, view, and manage staff records for the institution.</p>
+
+    <div class="page-actions">
+      <button type="button" class="btn btn-primary" id="add-staff-btn">Add Staff</button>
+    </div>
+
+    <form id="staff-form" aria-label="Add staff" aria-describedby="staff-form-error" hidden>
+      <p class="form-error" id="staff-form-error" role="alert" hidden></p>
+
+      <fieldset>
+        <legend id="staff-form-legend">New staff member</legend>
+
+        <div class="form-group">
+          <label for="staff-name">Name</label>
+          <input type="text" id="staff-name" name="name" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="staff-role">Role</label>
+          <input type="text" id="staff-role" name="role" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="staff-department">Department</label>
+          <input type="text" id="staff-department" name="department" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="staff-contact">Contact</label>
+          <input type="tel" id="staff-contact" name="contact" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="staff-joiningDate">Joining Date</label>
+          <input type="date" id="staff-joiningDate" name="joiningDate">
+        </div>
+      </fieldset>
+
+      <div class="page-actions">
+        <button type="submit" class="btn btn-primary" id="staff-form-save">Save Staff</button>
+        <button type="button" class="btn btn-secondary" id="staff-form-cancel">Cancel</button>
+      </div>
+    </form>
+
+    <section aria-label="Staff list">
+      <div class="list-controls">
+        <div class="form-group">
+          <label for="staff-search">Search</label>
+          <input type="search" id="staff-search" name="search"
+                 placeholder="Search by name, role, or department" autocomplete="off"
+                 aria-controls="staff-list">
+        </div>
+      </div>
+
+      <p class="empty-state" id="staff-empty">
+        No staff records yet. Use “Add Staff” to create the first record.
+      </p>
+
+      <p class="empty-state" id="staff-no-matches" role="status" hidden>
+        No staff members match your search.
+      </p>
+
+      <div class="table-wrap" id="staff-list" hidden>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Role</th>
+              <th scope="col">Department</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Joining Date</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="staff-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/staff.js"></script>
+</body>
+</html>
