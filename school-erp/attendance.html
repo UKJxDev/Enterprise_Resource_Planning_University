@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School ERP — Attendance</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header-inner container">
+      <span class="app-name">School ERP</span>
+
+      <nav class="app-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="app-nav-link" data-nav="dashboard">Dashboard</a>
+        <a href="students.html" class="app-nav-link" data-nav="students">Students</a>
+        <a href="attendance.html" class="app-nav-link" data-nav="attendance" aria-current="page">Attendance</a>
+        <a href="fees.html" class="app-nav-link" data-nav="fees">Fees</a>
+        <a href="staff.html" class="app-nav-link" data-nav="staff">Staff</a>
+        <a href="reports.html" class="app-nav-link" data-nav="reports">Reports</a>
+        <a href="settings.html" class="app-nav-link" data-nav="settings">Settings</a>
+      </nav>
+
+      <div class="app-user">
+        <span class="app-user-name" id="current-username">—</span>
+        <span class="app-user-role" id="current-role">—</span>
+        <button type="button" class="btn btn-secondary app-logout" id="logout-button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <h1>Attendance</h1>
+    <p class="text-muted">Select a class and section to view its student roster.</p>
+
+    <section aria-label="Class roster">
+      <div class="list-controls">
+        <div class="form-group">
+          <label for="attendance-class">Class</label>
+          <select id="attendance-class" name="class" aria-controls="attendance-roster">
+            <option value="" selected>Select…</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="attendance-section">Section</label>
+          <select id="attendance-section" name="section" aria-controls="attendance-roster">
+            <option value="" selected>Select…</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="attendance-date">Date</label>
+          <input type="date" id="attendance-date" name="date" aria-controls="attendance-roster">
+        </div>
+      </div>
+
+      <p class="empty-state" id="attendance-no-students" role="status" hidden>
+        No students have been added yet. Add students before recording attendance.
+      </p>
+
+      <p class="empty-state" id="attendance-choose">
+        Select a class, section, and date to view the roster.
+      </p>
+
+      <p class="empty-state" id="attendance-no-matches" role="status" hidden>
+        No students found for the selected class and section.
+      </p>
+
+      <div class="table-wrap" id="attendance-roster" hidden>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Roll Number</th>
+              <th scope="col">Class</th>
+              <th scope="col">Section</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-roster-body"></tbody>
+        </table>
+      </div>
+
+      <div class="page-actions" id="attendance-actions" hidden>
+        <button type="button" class="btn btn-primary" id="attendance-save-btn">Save Attendance</button>
+        <span class="text-muted" id="attendance-save-status" role="status" hidden></span>
+      </div>
+    </section>
+
+    <section aria-label="Attendance history">
+      <h2>Attendance history</h2>
+      <p class="text-muted">
+        Every recorded attendance entry. Choose a class and section above to narrow the list.
+      </p>
+
+      <p class="text-muted" id="attendance-history-summary" role="status" hidden></p>
+
+      <p class="empty-state" id="attendance-history-empty">
+        No attendance has been recorded yet.
+      </p>
+
+      <p class="empty-state" id="attendance-history-none" role="status" hidden>
+        No attendance records for the selected class and section.
+      </p>
+
+      <div class="table-wrap" id="attendance-history" hidden>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Student</th>
+              <th scope="col">Roll Number</th>
+              <th scope="col">Class</th>
+              <th scope="col">Section</th>
+              <th scope="col">Date</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-history-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/attendance.js"></script>
+</body>
+</html>
