@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School ERP — Fees</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header-inner container">
+      <span class="app-name">School ERP</span>
+
+      <nav class="app-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="app-nav-link" data-nav="dashboard">Dashboard</a>
+        <a href="students.html" class="app-nav-link" data-nav="students">Students</a>
+        <a href="attendance.html" class="app-nav-link" data-nav="attendance">Attendance</a>
+        <a href="fees.html" class="app-nav-link" data-nav="fees" aria-current="page">Fees</a>
+        <a href="staff.html" class="app-nav-link" data-nav="staff">Staff</a>
+        <a href="reports.html" class="app-nav-link" data-nav="reports">Reports</a>
+        <a href="settings.html" class="app-nav-link" data-nav="settings">Settings</a>
+      </nav>
+
+      <div class="app-user">
+        <span class="app-user-name" id="current-username">—</span>
+        <span class="app-user-role" id="current-role">—</span>
+        <button type="button" class="btn btn-secondary app-logout" id="logout-button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <h1>Fees</h1>
+    <p class="text-muted">Create and review fee records for students.</p>
+
+    <div class="page-actions">
+      <button type="button" class="btn btn-primary" id="add-fee-btn">Add Fee</button>
+    </div>
+
+    <form id="fee-form" aria-label="Add fee" aria-describedby="fee-form-error" hidden>
+      <p class="form-error" id="fee-form-error" role="alert" hidden></p>
+
+      <fieldset>
+        <legend id="fee-form-legend">New fee</legend>
+
+        <div class="form-group">
+          <label for="fee-student">Student</label>
+          <select id="fee-student" name="studentId" required>
+            <option value="" selected>Select a student…</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="fee-amount">Amount</label>
+          <input type="number" id="fee-amount" name="amount" min="0" step="0.01"
+                 inputmode="decimal" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fee-dueDate">Due Date</label>
+          <input type="date" id="fee-dueDate" name="dueDate" required>
+        </div>
+      </fieldset>
+
+      <div class="page-actions">
+        <button type="submit" class="btn btn-primary" id="fee-form-save">Save Fee</button>
+        <button type="button" class="btn btn-secondary" id="fee-form-cancel">Cancel</button>
+      </div>
+    </form>
+
+    <form id="payment-form" aria-label="Record payment" aria-describedby="payment-form-error" hidden>
+      <p class="form-error" id="payment-form-error" role="alert" hidden></p>
+
+      <fieldset>
+        <legend id="payment-form-legend">Record payment</legend>
+        <p class="text-muted" id="payment-form-context"></p>
+
+        <div class="form-group">
+          <label for="payment-date">Payment Date</label>
+          <input type="date" id="payment-date" name="paymentDate" required>
+        </div>
+      </fieldset>
+
+      <div class="page-actions">
+        <button type="submit" class="btn btn-primary" id="payment-form-save">Save Payment</button>
+        <button type="button" class="btn btn-secondary" id="payment-form-cancel">Cancel</button>
+      </div>
+    </form>
+
+    <section aria-label="Fee list">
+      <div class="list-controls">
+        <div class="form-group">
+          <label for="fee-status-filter">Status</label>
+          <select id="fee-status-filter" name="statusFilter" aria-controls="fee-list">
+            <option value="all" selected>All</option>
+            <option value="Paid">Paid</option>
+            <option value="Unpaid">Unpaid</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="text-muted" id="fee-summary" role="status" hidden></p>
+
+      <p class="empty-state" id="fee-no-students" role="status" hidden>
+        No students have been added yet. Add students before creating fee records.
+      </p>
+
+      <p class="empty-state" id="fee-empty">
+        No fee records yet. Use “Add Fee” to create the first record.
+      </p>
+
+      <p class="empty-state" id="fee-no-matches" role="status" hidden></p>
+
+      <div class="table-wrap" id="fee-list" hidden>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Student</th>
+              <th scope="col">Roll Number</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Status</th>
+              <th scope="col">Payment Date</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="fee-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/fees.js"></script>
+</body>
+</html>
