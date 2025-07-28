@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School ERP — Settings</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header-inner container">
+      <span class="app-name">School ERP</span>
+
+      <nav class="app-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="app-nav-link" data-nav="dashboard">Dashboard</a>
+        <a href="students.html" class="app-nav-link" data-nav="students">Students</a>
+        <a href="attendance.html" class="app-nav-link" data-nav="attendance">Attendance</a>
+        <a href="fees.html" class="app-nav-link" data-nav="fees">Fees</a>
+        <a href="staff.html" class="app-nav-link" data-nav="staff">Staff</a>
+        <a href="reports.html" class="app-nav-link" data-nav="reports">Reports</a>
+        <a href="settings.html" class="app-nav-link" data-nav="settings" aria-current="page">Settings</a>
+      </nav>
+
+      <div class="app-user">
+        <span class="app-user-name" id="current-username">—</span>
+        <span class="app-user-role" id="current-role">—</span>
+        <button type="button" class="btn btn-secondary app-logout" id="logout-button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <h1>Settings</h1>
+    <p class="text-muted">Manage basic system configuration.</p>
+
+    <p class="empty-state" id="settings-denied" role="status" hidden>
+      You do not have permission to access Settings.
+    </p>
+
+    <section aria-labelledby="settings-config-heading" id="settings-config" hidden>
+      <h2 id="settings-config-heading">System configuration</h2>
+
+      <form id="settings-form" aria-label="System settings" aria-describedby="settings-form-error">
+        <p class="form-error" id="settings-form-error" role="alert" hidden></p>
+
+        <div class="form-group">
+          <label for="institution-name">Institution name</label>
+          <input type="text" id="institution-name" name="institutionName" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="academic-year">Academic year</label>
+          <input type="text" id="academic-year" name="academicYear" autocomplete="off" required>
+        </div>
+
+        <div class="page-actions">
+          <button type="submit" class="btn btn-primary" id="settings-form-save">Save Settings</button>
+          <button type="button" class="btn btn-secondary" id="settings-form-cancel">Cancel</button>
+        </div>
+
+        <p class="text-muted" id="settings-form-status" role="status" hidden></p>
+      </form>
+    </section>
+
+    <section aria-labelledby="settings-classes-heading" id="settings-classes" hidden>
+      <h2 id="settings-classes-heading">Classes</h2>
+      <p class="text-muted">Canonical list of class names for this institution.</p>
+
+      <form id="class-form" aria-label="Add class" aria-describedby="class-error">
+        <p class="form-error" id="class-error" role="alert" hidden></p>
+
+        <div class="form-group">
+          <label for="class-name">Class name</label>
+          <input type="text" id="class-name" name="className" autocomplete="off">
+        </div>
+
+        <div class="page-actions">
+          <button type="submit" class="btn btn-primary" id="class-add">Add Class</button>
+        </div>
+      </form>
+
+      <p class="empty-state" id="class-empty">No classes defined yet.</p>
+
+      <div class="table-wrap" id="class-list" hidden>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Class</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="class-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="settings-sections-heading" id="settings-sections" hidden>
+      <h2 id="settings-sections-heading">Sections</h2>
+      <p class="text-muted">Canonical list of section names for this institution.</p>
+
+      <form id="section-form" aria-label="Add section" aria-describedby="section-error">
+        <p class="form-error" id="section-error" role="alert" hidden></p>
+
+        <div class="form-group">
+          <label for="section-name">Section name</label>
+          <input type="text" id="section-name" name="sectionName" autocomplete="off">
+        </div>
+
+        <div class="page-actions">
+          <button type="submit" class="btn btn-primary" id="section-add">Add Section</button>
+        </div>
+      </form>
+
+      <p class="empty-state" id="section-empty">No sections defined yet.</p>
+
+      <div class="table-wrap" id="section-list" hidden>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Section</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="section-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
