@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School ERP — Reports</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header-inner container">
+      <span class="app-name">School ERP</span>
+
+      <nav class="app-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="app-nav-link" data-nav="dashboard">Dashboard</a>
+        <a href="students.html" class="app-nav-link" data-nav="students">Students</a>
+        <a href="attendance.html" class="app-nav-link" data-nav="attendance">Attendance</a>
+        <a href="fees.html" class="app-nav-link" data-nav="fees">Fees</a>
+        <a href="staff.html" class="app-nav-link" data-nav="staff">Staff</a>
+        <a href="reports.html" class="app-nav-link" data-nav="reports" aria-current="page">Reports</a>
+        <a href="settings.html" class="app-nav-link" data-nav="settings">Settings</a>
+      </nav>
+
+      <div class="app-user">
+        <span class="app-user-name" id="current-username">—</span>
+        <span class="app-user-role" id="current-role">—</span>
+        <button type="button" class="btn btn-secondary app-logout" id="logout-button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <h1>Reports</h1>
+    <p class="text-muted">Read-only analytics derived from the current student, attendance, and fee records.</p>
+
+    <section aria-labelledby="report-students-heading">
+      <h2 id="report-students-heading">Student statistics</h2>
+      <p class="empty-state" id="report-students-empty">No students yet.</p>
+      <dl class="stat-list" id="report-students-stats" hidden></dl>
+    </section>
+
+    <section aria-labelledby="report-attendance-heading">
+      <h2 id="report-attendance-heading">Attendance</h2>
+      <p class="empty-state" id="report-attendance-empty">No attendance records yet.</p>
+
+      <div id="report-attendance-content" hidden>
+        <dl class="stat-list" id="report-attendance-stats"></dl>
+
+        <div class="report-chart" id="report-attendance-chart" role="img"></div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption class="text-muted">Attendance status breakdown</caption>
+            <thead>
+              <tr>
+                <th scope="col">Status</th>
+                <th scope="col">Count</th>
+                <th scope="col">Share</th>
+              </tr>
+            </thead>
+            <tbody id="report-attendance-breakdown"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="report-fees-heading">
+      <h2 id="report-fees-heading">Fees collection</h2>
+      <p class="empty-state" id="report-fees-empty">No fee records yet.</p>
+
+      <div id="report-fees-content" hidden>
+        <dl class="stat-list" id="report-fees-stats"></dl>
+        <div class="report-chart" id="report-fees-chart" role="img"></div>
+        <p class="text-muted" id="report-fees-chart-note">Bar shows collected versus outstanding as a share of total billed.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/reports.js"></script>
+</body>
+</html>

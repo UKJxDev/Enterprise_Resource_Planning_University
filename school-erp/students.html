@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School ERP — Students</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header-inner container">
+      <span class="app-name">School ERP</span>
+
+      <nav class="app-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="app-nav-link" data-nav="dashboard">Dashboard</a>
+        <a href="students.html" class="app-nav-link" data-nav="students" aria-current="page">Students</a>
+        <a href="attendance.html" class="app-nav-link" data-nav="attendance">Attendance</a>
+        <a href="fees.html" class="app-nav-link" data-nav="fees">Fees</a>
+        <a href="staff.html" class="app-nav-link" data-nav="staff">Staff</a>
+        <a href="reports.html" class="app-nav-link" data-nav="reports">Reports</a>
+        <a href="settings.html" class="app-nav-link" data-nav="settings">Settings</a>
+      </nav>
+
+      <div class="app-user">
+        <span class="app-user-name" id="current-username">—</span>
+        <span class="app-user-role" id="current-role">—</span>
+        <button type="button" class="btn btn-secondary app-logout" id="logout-button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <h1>Students</h1>
+    <p class="text-muted">Add, view, and manage student records for the institution.</p>
+
+    <div class="page-actions">
+      <button type="button" class="btn btn-primary" id="add-student-btn">Add Student</button>
+    </div>
+
+    <form id="student-form" aria-label="Add student" aria-describedby="student-form-error" hidden>
+      <p class="form-error" id="student-form-error" role="alert" hidden></p>
+
+      <fieldset>
+        <legend id="student-form-legend">New student</legend>
+
+        <div class="form-group">
+          <label for="student-name">Name</label>
+          <input type="text" id="student-name" name="name" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="student-rollNo">Roll Number</label>
+          <input type="text" id="student-rollNo" name="rollNo" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="student-class">Class</label>
+          <input type="text" id="student-class" name="class" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="student-section">Section</label>
+          <input type="text" id="student-section" name="section" autocomplete="off" required>
+        </div>
+
+        <div class="form-group">
+          <label for="student-contact">Contact</label>
+          <input type="tel" id="student-contact" name="contact" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="student-admissionDate">Admission Date</label>
+          <input type="date" id="student-admissionDate" name="admissionDate">
+        </div>
+
+        <div class="form-group">
+          <label for="student-status">Status</label>
+          <select id="student-status" name="status">
+            <option value="Active" selected>Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <div class="page-actions">
+        <button type="submit" class="btn btn-primary" id="student-form-save">Save Student</button>
+        <button type="button" class="btn btn-secondary" id="student-form-cancel">Cancel</button>
+      </div>
+    </form>
+
+    <section aria-label="Student list">
+      <div class="list-controls">
+        <div class="form-group">
+          <label for="student-search">Search</label>
+          <input type="search" id="student-search" name="search"
+                 placeholder="Name or roll number" autocomplete="off"
+                 aria-controls="student-list">
+        </div>
+
+        <div class="form-group">
+          <label for="student-status-filter">Status</label>
+          <select id="student-status-filter" name="statusFilter" aria-controls="student-list">
+            <option value="all" selected>All</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="empty-state" id="student-empty">
+        No students yet. Use “Add Student” to create the first record.
+      </p>
+
+      <p class="empty-state" id="student-no-matches" role="status" hidden>
+        No students match your search or filter.
+      </p>
+
+      <div class="table-wrap" id="student-list" hidden>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Roll Number</th>
+              <th scope="col">Class</th>
+              <th scope="col">Section</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Admission Date</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="student-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/students.js"></script>
+</body>
+</html>

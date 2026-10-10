@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School ERP — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header-inner container">
+      <span class="app-name">School ERP</span>
+
+      <nav class="app-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="app-nav-link" data-nav="dashboard" aria-current="page">Dashboard</a>
+        <a href="students.html" class="app-nav-link" data-nav="students">Students</a>
+        <a href="attendance.html" class="app-nav-link" data-nav="attendance">Attendance</a>
+        <a href="fees.html" class="app-nav-link" data-nav="fees">Fees</a>
+        <a href="staff.html" class="app-nav-link" data-nav="staff">Staff</a>
+        <a href="reports.html" class="app-nav-link" data-nav="reports">Reports</a>
+        <a href="settings.html" class="app-nav-link" data-nav="settings">Settings</a>
+      </nav>
+
+      <div class="app-user">
+        <span class="app-user-name" id="current-username">—</span>
+        <span class="app-user-role" id="current-role">—</span>
+        <button type="button" class="btn btn-secondary app-logout" id="logout-button">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container dashboard-main">
+    <h1>Dashboard</h1>
+    <p class="dashboard-greeting" id="dashboard-greeting">Signed in.</p>
+
+    <section class="dashboard-summary" id="dashboard-summary" aria-label="Dashboard summary">
+      <p class="dashboard-empty">Loading summary…</p>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
